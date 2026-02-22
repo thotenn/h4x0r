@@ -31,3 +31,42 @@ function h4x0r_maybe_hide_post_date( $block_content, $block ) {
 	return $block_content;
 }
 add_filter( 'render_block', 'h4x0r_maybe_hide_post_date', 10, 2 );
+
+function h4x0r_comment_form_toggle() {
+	?>
+	<script>
+	(function() {
+		var KEY = "h4x0r-comment-light";
+		var form = document.querySelector(".wp-block-post-comments-form");
+		if (!form) return;
+
+		var btn = document.createElement("button");
+		btn.type = "button";
+		btn.className = "h4x0r-comment-toggle";
+		btn.setAttribute("aria-label", "Toggle comment form theme");
+
+		function apply(light) {
+			if (light) {
+				form.classList.add("light-mode");
+				btn.textContent = "[ light ]";
+			} else {
+				form.classList.remove("light-mode");
+				btn.textContent = "[ dark ]";
+			}
+		}
+
+		var saved = localStorage.getItem(KEY);
+		apply(saved === "1");
+
+		btn.addEventListener("click", function() {
+			var isLight = form.classList.contains("light-mode");
+			apply(!isLight);
+			localStorage.setItem(KEY, !isLight ? "1" : "0");
+		});
+
+		form.insertBefore(btn, form.firstChild);
+	})();
+	</script>
+	<?php
+}
+add_action( 'wp_footer', 'h4x0r_comment_form_toggle' );
