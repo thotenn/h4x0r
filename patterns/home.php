@@ -21,11 +21,6 @@
 echo sprintf( esc_html__( 'This site uses the %1$sh4x0r%2$s theme, originally built for %3$shttps://jrtashjian.com%4$s, with retro terminal aesthetic, CRT effects, color palettes, and monospace fonts.', 'h4x0r' ), '<strong>', '</strong>', '<a href="' . esc_url( 'https://jrtashjian.com' ) . '">', '</a>' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
-<p><?php /* Translators: 1. is the start of a 'strong' HTML element, 2. is the end of a 'strong' HTML element, 3. is a 'br' HTML element, 4. is the start of a 'a' HTML element, 5. is the end of a 'a' HTML element */ 
-echo sprintf( esc_html__( 'Search and comment forms are powered by %1$sOmniForm%2$s.%3$s%4$sInstall it on the plugins page%5$s.', 'h4x0r' ), '<strong>', '</strong>', '<br>', '<a href="' . esc_url( '/wp-admin/plugin-install.php?s=omniform&tab=search&type=term' ) . '" data-type="link" data-id="/wp-admin/plugin-install.php?s=omniform&tab=search&type=term">', '</a>' ); ?></p>
-<!-- /wp:paragraph -->
-
 <!-- wp:paragraph {"align":"center","style":{"spacing":{"padding":{"right":"0","left":"0","top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"contrast","textColor":"base"} -->
 <p class="has-text-align-center has-base-color has-contrast-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--50);padding-right:0;padding-bottom:var(--wp--preset--spacing--50);padding-left:0"><?php /* Translators: 1. is a 'br' HTML element, 2. is a 'br' HTML element */ 
 echo sprintf( esc_html__( '01100011 01101111 01100100 01100101%1$s01101001 01110011%2$s01110000 01101111 01100101 01110100 01110010 01111001', 'h4x0r' ), '<br>', '<br>' ); ?></p>

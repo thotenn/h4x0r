@@ -18,16 +18,7 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:omniform/form {"form_type":"custom","submit_action":"{{get_site_url}}","submit_method":"GET"} -->
-<!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","orientation":"horizontal"}} -->
-<div class="wp-block-group" style="margin-top:0;margin-bottom:0">
-<!-- wp:omniform/field {"fieldLabel":"Search","fieldName":"s","isRequired":true} -->
-<!-- wp:omniform/input {"fieldType":"search","fieldPlaceholder":""} /-->
-<!-- /wp:omniform/field -->
-<!-- wp:omniform/button {"buttonType":"submit","buttonLabel":"Search","style":{"border":{"width":"2px"}},"borderColor":"contrast"} /-->
-</div>
-<!-- /wp:group -->
-<!-- /wp:omniform/form -->
+<!-- wp:search {"label":"Search","showLabel":false,"placeholder":"Search","buttonText":"Search","buttonUseIcon":false,"style":{"border":{"width":"2px"}},"borderColor":"contrast"} /-->
 
 <!-- wp:columns {"verticalAlignment":"top"} -->
 <div class="wp-block-columns are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top"} -->
