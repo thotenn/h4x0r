@@ -113,3 +113,14 @@ function h4x0r_antispam_check( $commentdata ) {
 	return $commentdata;
 }
 add_filter( 'preprocess_comment', 'h4x0r_antispam_check' );
+
+function h4x0r_remove_plugin_update_count() {
+	global $menu;
+	foreach ( $menu as $key => $value ) {
+		if ( $value[2] === 'plugins.php' ) {
+			$menu[$key][0] = 'Plugins';
+			return;
+		}
+	}
+}
+add_action( 'admin_menu', 'h4x0r_remove_plugin_update_count', 999 );
