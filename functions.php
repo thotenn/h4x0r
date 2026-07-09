@@ -17,26 +17,38 @@ function h4x0r_customize_register( $wp_customize ) {
 		'type'    => 'checkbox',
 	) );
 
-	$wp_customize->add_setting( 'h4x0r_umami_website_id', array(
+}
+add_action( 'customize_register', 'h4x0r_customize_register' );
+
+function h4x0r_umami_settings_register() {
+	register_setting( 'general', 'h4x0r_umami_website_id', array(
+		'type'              => 'string',
 		'default'           => '',
 		'sanitize_callback' => 'sanitize_text_field',
 	) );
 
-	$wp_customize->add_control( 'h4x0r_umami_website_id', array(
-		'label'       => __( 'Umami Website ID', 'h4x0r' ),
-		'description' => __( 'From lytics.thotenn.com → Settings → Websites. Leave empty to disable tracking.', 'h4x0r' ),
-		'section'     => 'h4x0r_options',
-		'type'        => 'text',
-	) );
+	add_settings_field(
+		'h4x0r_umami_website_id',
+		__( 'Umami Website ID', 'h4x0r' ),
+		'h4x0r_umami_settings_field',
+		'general'
+	);
 }
-add_action( 'customize_register', 'h4x0r_customize_register' );
+add_action( 'admin_init', 'h4x0r_umami_settings_register' );
+
+function h4x0r_umami_settings_field() {
+	?>
+	<input type="text" name="h4x0r_umami_website_id" value="<?php echo esc_attr( get_option( 'h4x0r_umami_website_id', '' ) ); ?>" class="regular-text" />
+	<p class="description"><?php esc_html_e( 'From lytics.thotenn.com → Settings → Websites. Leave empty to disable tracking.', 'h4x0r' ); ?></p>
+	<?php
+}
 
 function h4x0r_umami_analytics() {
 	if ( is_user_logged_in() ) {
 		return;
 	}
 
-	$website_id = get_theme_mod( 'h4x0r_umami_website_id', '' );
+	$website_id = get_option( 'h4x0r_umami_website_id', '' );
 
 	if ( empty( $website_id ) ) {
 		return;
