@@ -16,8 +16,38 @@ function h4x0r_customize_register( $wp_customize ) {
 		'section' => 'h4x0r_options',
 		'type'    => 'checkbox',
 	) );
+
+	$wp_customize->add_setting( 'h4x0r_umami_website_id', array(
+		'default'           => '',
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+
+	$wp_customize->add_control( 'h4x0r_umami_website_id', array(
+		'label'       => __( 'Umami Website ID', 'h4x0r' ),
+		'description' => __( 'From lytics.thotenn.com → Settings → Websites. Leave empty to disable tracking.', 'h4x0r' ),
+		'section'     => 'h4x0r_options',
+		'type'        => 'text',
+	) );
 }
 add_action( 'customize_register', 'h4x0r_customize_register' );
+
+function h4x0r_umami_analytics() {
+	if ( is_user_logged_in() ) {
+		return;
+	}
+
+	$website_id = get_theme_mod( 'h4x0r_umami_website_id', '' );
+
+	if ( empty( $website_id ) ) {
+		return;
+	}
+
+	printf(
+		'<script defer src="https://lytics.thotenn.com/script.js" data-website-id="%s"></script>' . "\n",
+		esc_attr( $website_id )
+	);
+}
+add_action( 'wp_head', 'h4x0r_umami_analytics' );
 
 function h4x0r_maybe_hide_post_date( $block_content, $block ) {
 	if ( 'core/post-date' !== $block['blockName'] ) {
